@@ -1,0 +1,31 @@
+@Service
+public class ClienteService implements IClienteService {
+
+    @Autowired
+    private IClienteRepository clienteRepository;
+
+    @Override
+    public List<Cliente> getAllClientes() {
+        return clienteRepository.findAll();
+    }
+
+    @Override
+    public Cliente getClienteById(Long id) {
+        return clienteRepository.findById(id).orElseThrow(() -> new ClienteNotFoundException(id));
+    }
+
+    @Override
+    public Cliente createCliente(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    @Override
+    public Cliente updateCliente(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    @Override
+    public void deleteCliente(Long id) {
+        clienteRepository.deleteById(id);
+    }
+}
